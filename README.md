@@ -2,7 +2,7 @@
 
 ## This Repo
 
-This repository contains the code explained in the articles of [[https://jorgeortiz.dev][my blog]] about full-stack apps
+This repository contains the code explained in the articles of [my blog](https://jorgeortiz.dev) about full-stack apps
 in Go.
 
 ## License
