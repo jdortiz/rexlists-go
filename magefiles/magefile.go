@@ -13,15 +13,19 @@ import (
 const appName = "rexlists"
 const targetDir = "target"
 
+// Namespaces
+type Build mg.Namespace
+type Check mg.Namespace
+
 // Build front end application
-func BuildFrontEnd() error {
+func (Build) FrontEnd() error {
 	fmt.Println("Building front end.")
 	return buildVariant(appName, "fe")
 
 }
 
 // Build back end application
-func BuildBackEnd() error {
+func (Build) BackEnd() error {
 	fmt.Println("Building back end.")
 	return buildVariant(appName, "be")
 }
@@ -33,6 +37,17 @@ func buildVariant(appName, variant string) error {
 }
 
 // Build both applications
-func BuildAll() {
-	mg.Deps(BuildFrontEnd, BuildBackEnd)
+func (Build) All() {
+	mg.Deps(Build.FrontEnd, Build.BackEnd)
+}
+
+// Run linters.
+func (Check) Lint() error {
+	fmt.Println("Run Linters.")
+	return sh.RunV("golangci-lint", "run")
+}
+
+// Check code quality.
+func (Check) All() {
+	mg.Deps(Check.Lint)
 }
