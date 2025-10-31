@@ -13,6 +13,13 @@ import (
 const appName = "rexlists"
 const targetDir = "target"
 
+var Aliases = map[string]interface{}{
+	"b":  Build.All,
+	"bf": Build.FrontEnd,
+	"bb": Build.BackEnd,
+	"c":  Check.All,
+}
+
 // Namespaces
 type Build mg.Namespace
 type Check mg.Namespace
