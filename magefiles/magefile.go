@@ -6,6 +6,7 @@ package main
 import (
 	"fmt"
 
+	"github.com/magefile/mage/mg"
 	"github.com/magefile/mage/sh"
 )
 
@@ -29,4 +30,9 @@ func buildVariant(appName, variant string) error {
 	var bin = fmt.Sprintf("target/%s-%s", appName, variant)
 	var src = fmt.Sprintf("cmd/%s-%s/main.go", appName, variant)
 	return sh.Run("go", "build", "-o", bin, src)
+}
+
+// Build both applications
+func BuildAll() {
+	mg.Deps(BuildFrontEnd, BuildBackEnd)
 }
