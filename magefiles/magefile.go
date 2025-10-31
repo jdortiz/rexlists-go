@@ -20,6 +20,10 @@ var Aliases = map[string]interface{}{
 	"c":  Check.All,
 }
 
+// Default target to run when none is specified
+// If not set, running mage will list available targets
+var Default = Build.All
+
 // Namespaces
 type Build mg.Namespace
 type Check mg.Namespace
